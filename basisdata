@@ -1,0 +1,256 @@
+Microsoft Windows [Version 10.0.22631.3296]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\xampp\mysql\bin>mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> USE dbti02;
+Database changed
+MariaDB [dbti02]> SHOW TABLES;
++------------------+
+| Tables_in_dbti02 |
++------------------+
+| jenis            |
+| produk           |
++------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [dbti02]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| dbkuliah           |
+| dbposti02          |
+| dbpuskesmas        |
+| dbti02             |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+9 rows in set (0.016 sec)
+
+MariaDB [dbti02]> create database dbkuliah2;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [dbti02]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| dbkuliah           |
+| dbkuliah2          |
+| dbposti02          |
+| dbpuskesmas        |
+| dbti02             |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+10 rows in set (0.002 sec)
+
+MariaDB [dbti02]> use dbkuliah2;
+Database changed
+MariaDB [dbkuliah2]> show tables;
+Empty set (0.001 sec)
+
+MariaDB [dbkuliah2]> create table Mahasiswa (
+    ->     -> id int auto_increment primary key,
+    ->     -> nim int,
+    ->     -> nama varchar(255),
+    ->     -> alamat varchar(255),
+    ->     -> idjurusan int,
+    ->     -> foto varchar(255)
+    ->     -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '-> id int auto_increment primary key,
+    -> nim int,
+    -> nama varchar(255...' at line 2
+MariaDB [dbkuliah2]> create table Mahasiswa (
+    -> id int auto_increment primary key,
+    -> nim int,
+    -> nama varchar(255),
+    -> alamat varchar(255),
+    -> idjurusan int,
+    -> foto varchar(255)
+    -> );
+Query OK, 0 rows affected (0.024 sec)
+
+MariaDB [dbkuliah2]> show tables;
++---------------------+
+| Tables_in_dbkuliah2 |
++---------------------+
+| mahasiswa           |
++---------------------+
+1 row in set (0.001 sec)
+
+MariaDB [dbkuliah2]> create table Jurusan (
+    -> id int primary key,
+    -> nama varchar(255)
+    -> );
+Query OK, 0 rows affected (0.023 sec)
+
+MariaDB [dbkuliah2]> show tables;
++---------------------+
+| Tables_in_dbkuliah2 |
++---------------------+
+| jurusan             |
+| mahasiswa           |
++---------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [dbkuliah2]> drop table mahasiswa;
+Query OK, 0 rows affected (0.009 sec)
+
+MariaDB [dbkuliah2]> show tables;
++---------------------+
+| Tables_in_dbkuliah2 |
++---------------------+
+| jurusan             |
++---------------------+
+1 row in set (0.001 sec)
+
+MariaDB [dbkuliah2]> create table mahasiswa (
+    -> id int(11) not null,
+    -> nim int(11) not null,
+    -> nama varchar(45) not null,
+    -> alamat varchar(45) not null,
+    -> idjurusan int(11) not null,
+    -> foto varchar(45)
+    -> );
+Query OK, 0 rows affected (0.024 sec)
+
+MariaDB [dbkuliah2]> show tables;
++---------------------+
+| Tables_in_dbkuliah2 |
++---------------------+
+| jurusan             |
+| mahasiswa           |
++---------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [dbkuliah2]> drop table jurusan;
+Query OK, 0 rows affected (0.008 sec)
+
+MariaDB [dbkuliah2]> create table jurusan (
+    -> id int(11) not null,
+    -> nama varchar(45) default null);
+Query OK, 0 rows affected (0.023 sec)
+
+MariaDB [dbkuliah2]> show tables;
++---------------------+
+| Tables_in_dbkuliah2 |
++---------------------+
+| jurusan             |
+| mahasiswa           |
++---------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [dbkuliah2]> insert into mahasiswa (id, nim, nama, alamat, idjurusan, foto)
+    -> values (o
+    -> values (01, 0110223201, 'Siska', 'Jalan Sukmajaya Jakarta Timur', 1, 'siska.jpg');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'values (01, 0110223201, 'Siska', 'Jalan Sukmajaya Jakarta Timur', 1, 'siska.j...' at line 3
+MariaDB [dbkuliah2]> insert into mahasiswa (id, nim, nama, alamat, idjurusan, foto)
+    -> values (01, 0110223201, 'Siska', 'Jalan Sukmajaya Jakarta Timur', 1, 'siska.jpg');
+Query OK, 1 row affected (0.017 sec)
+
+MariaDB [dbkuliah2]> select * from mahasiswa;
++----+-----------+-------+-------------------------------+-----------+-----------+
+| id | nim       | nama  | alamat                        | idjurusan | foto      |
++----+-----------+-------+-------------------------------+-----------+-----------+
+|  1 | 110223201 | Siska | Jalan Sukmajaya Jakarta Timur |         1 | siska.jpg |
++----+-----------+-------+-------------------------------+-----------+-----------+
+1 row in set (0.001 sec)
+
+MariaDB [dbkuliah2]> insert into mahasiswa (id, nim, nama, alamat, idjurusan, foto)
+    -> values (02,0110223291, 'nurmila', 'Jalan Margotila Jakata', 1, 'mila.jpg');
+Query OK, 1 row affected (0.016 sec)
+
+MariaDB [dbkuliah2]> select * from mahasiswa;
++----+-----------+---------+-------------------------------+-----------+-----------+
+| id | nim       | nama    | alamat                        | idjurusan | foto      |
++----+-----------+---------+-------------------------------+-----------+-----------+
+|  1 | 110223201 | Siska   | Jalan Sukmajaya Jakarta Timur |         1 | siska.jpg |
+|  2 | 110223291 | nurmila | Jalan Margotila Jakata        |         1 | mila.jpg  |
++----+-----------+---------+-------------------------------+-----------+-----------+
+2 rows in set (0.001 sec)
+
+MariaDB [dbkuliah2]> insert into mahasiswa (id, nim, nama, alamat, idjurusan, foto)
+    -> values (03, 0110223279, 'nurfadillah', 'Jalan Kalebuyon Bekasi', 3, 'dillah.jpg');
+Query OK, 1 row affected (0.016 sec)
+
+MariaDB [dbkuliah2]> insert into mahasiswa (id, nim, nama, alamat, idjurusan, foto)
+    -> values (04, 0110223272, 'sania', 'Jalan Kebayoran Depok', 4, 'sania.jpg');
+Query OK, 1 row affected (0.015 sec)
+
+MariaDB [dbkuliah2]> insert into mahasiswa (id, nim, nama, alamat, idjurusan, foto)
+    -> values (05, 0110223293, 'meyfa', 'Jalan Muhajirin Bima', 5, 'meyfa.jpg');
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [dbkuliah2]> select * from mahasiswa;
++----+-----------+-------------+-------------------------------+-----------+------------+
+| id | nim       | nama        | alamat                        | idjurusan | foto       |
++----+-----------+-------------+-------------------------------+-----------+------------+
+|  1 | 110223201 | Siska       | Jalan Sukmajaya Jakarta Timur |         1 | siska.jpg  |
+|  2 | 110223291 | nurmila     | Jalan Margotila Jakata        |         1 | mila.jpg   |
+|  3 | 110223279 | nurfadillah | Jalan Kalebuyon Bekasi        |         3 | dillah.jpg |
+|  4 | 110223272 | sania       | Jalan Kebayoran Depok         |         4 | sania.jpg  |
+|  5 | 110223293 | meyfa       | Jalan Muhajirin Bima          |         5 | meyfa.jpg  |
++----+-----------+-------------+-------------------------------+-----------+------------+
+5 rows in set (0.001 sec)
+
+MariaDB [dbkuliah2]>  insert into jurusan (id, nama)
+    -> values (01, 'Teknik Informatika');
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [dbkuliah2]> select * from jurusan;
++----+--------------------+
+| id | nama               |
++----+--------------------+
+|  1 | Teknik Informatika |
++----+--------------------+
+1 row in set (0.001 sec)
+
+MariaDB [dbkuliah2]>  insert into jurusan (id, nama)
+    -> values (02, 'Sistem Informasi');
+Query OK, 1 row affected (0.015 sec)
+
+MariaDB [dbkuliah2]>  insert into jurusan (id, nama)
+    -> values (03, 'Bisnis Digital'),
+    -> values (04, 'Hukum'),
+    -> values (05, 'Perpajakan');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'values (04, 'Hukum'),
+values (05, 'Perpajakan')' at line 3
+MariaDB [dbkuliah2]>  insert into jurusan (id, nama)
+    -> values (03, 'Bisnis Digital');
+Query OK, 1 row affected (0.016 sec)
+
+MariaDB [dbkuliah2]>  insert into jurusan (id, nama)
+    -> values (04, 'Hukum');
+Query OK, 1 row affected (0.016 sec)
+
+MariaDB [dbkuliah2]>  insert into jurusan (id, nama)
+    -> values (05, 'Perpajakan');
+Query OK, 1 row affected (0.015 sec)
+
+MariaDB [dbkuliah2]> select * from jurusan;
++----+--------------------+
+| id | nama               |
++----+--------------------+
+|  1 | Teknik Informatika |
+|  2 | Sistem Informasi   |
+|  3 | Bisnis Digital     |
+|  4 | Hukum              |
+|  5 | Perpajakan         |
++----+--------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [dbkuliah2]>
